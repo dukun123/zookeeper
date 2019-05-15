@@ -1,0 +1,48 @@
+1.终端操作：
+  （1）bin目录下常用的脚本解释
+
+　　　　zkCleanup　　清理Zookeeper历史数据，包括食物日志文件和快照数据文件
+
+　　　　zkCli　　　　  Zookeeper的一个简易客户端
+
+　　　　zkEnv　　　　设置Zookeeper的环境变量
+
+　　　　zkServer　　   Zookeeper服务器的启动、停止、和重启脚本
+
+   (2)./zkCli.sh -server ip:port 连接不同的主机，可使用如下命令
+
+   (3)节点操作
+      创建节点 create [-s] [-e] path data acl
+              其中，-s或-e分别指定节点特性，顺序或临时节点，若不指定，则表示持久节点；data该节点的acl用来进行权限控制。
+      读取节点
+
+      　　与读取相关的命令有ls 命令和get 命令，ls命令可以列出Zookeeper指定节点下的所有子节点，只能查看指定节点下的第一级的所有子节点；get命令可以获取Zookeeper指定节点的数据内容和属性信息。其用法分别如下
+
+      　　ls path [watch]
+
+      　　get path [watch]
+
+      　　ls2 path [watch]
+
+          若获取根节点下面的所有子节点，使用ls / 命令即可
+          若想获取根节点数据内容和属性信息，使用get / 命令即可
+
+       更新节点
+
+       　　使用set命令，可以更新指定节点的数据内容，用法如下
+
+       　　set path data [version]
+
+       　　其中，data就是要更新的新内容，version表示数据版本
+
+       删除节点
+
+       　　使用delete命令可以删除Zookeeper上的指定节点，用法如下
+
+       　　delete path [version]
+
+       　　其中version也是表示数据版本，使用delete /zk-permanent 命令即可删除/zk-permanent节点
+
+          若删除节点存在子节点，那么无法删除该节点，必须先删除子节点，再删除父节点。
+
+2. java 操作，见示例代码：
